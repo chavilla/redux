@@ -16,7 +16,7 @@ const NuevoProducto = () => {
     //Acceder al state mediante useSelector
     const cargando=useSelector(state=>state.productos.loading);
     const error= useSelector(state=>state.productos.error);
-
+    
     //Comunicar el dispatch con el state local
     const addProducto=producto=> dispatch(crearProductoAction(producto));
 

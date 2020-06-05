@@ -10,10 +10,11 @@ export function crearProductoAction(producto){
 
         try {
              //Insertar en la api
-             await clienteAxios.post('/productoss', producto);
+             await clienteAxios.post('/productos', producto);
              //si sale bien actualizar el state
             setTimeout(()=>{
-                dispatch(agregarProductoExito(producto))
+                dispatch(agregarProductoExito(producto));
+                alert('Producto insertado satisfactoriamente.');
             },3000)
         } catch (error) {
             setTimeout(()=>{

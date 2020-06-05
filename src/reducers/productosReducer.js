@@ -5,7 +5,8 @@ import { AGREGAR_PRODUCTO, AGREGAR_PRODUCTO_EXITO, AGREGAR_PRODUCTO_ERROR} from 
 const initialState={
     productos:[],
     error:null,
-    loading:false
+    loading:false,
+    insertado:false
 }
 
 //el reducer será una función que recibira un state y un action
