@@ -1,6 +1,16 @@
 import React from 'react';
 
+//Actions
+import { crearProductoAction } from '../actions/productoActions';
+
 const NuevoProducto = () => {
+
+    //Cuando el usuario haga submit
+    const submitNuevoProducto=()=>{
+        
+    }
+    
+
     return ( 
         <div className="row justify-content-center">
             <div className="col-md-8 mt-3">
@@ -9,7 +19,9 @@ const NuevoProducto = () => {
                         <h2 className="text-center mb-4font-weight-bold">
                             Agregar producto
                         </h2>
-                        <form>
+                        <form
+                        onSubmit={submitNuevoProducto}
+                        >
                             <div className="form-group">
                                 <label>Nombre Producto:</label>
                                 <input
