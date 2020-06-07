@@ -19,7 +19,7 @@ const Productos = () => {
         
     return ( 
         <Fragment>
-            <h2 className="text-center my-5">Desde Productos</h2>
+            <h2 className="text-center my-5">Lista de Productos</h2>
 
             {productos.length===0 
             ? 'No hay productos'

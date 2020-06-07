@@ -6,10 +6,15 @@ import { AGREGAR_PRODUCTO,
     CONSULTAR_PRODUCTOS_ERROR,
     PRODUCTO_ELIMINADO,
     PRODUCTO_NOELIMINADO,
-    OBTENER_PRODUCTO_ELIMINAR
+    OBTENER_PRODUCTO_ELIMINAR,
+    OBTENER_PRODUCTO_EDITAR,
+    INICIAR_EDICION_PRODUCTO,
+    PRODUCTO_EDITADO,
+    PRODUCTO_NOEDITADO
 } from '../types';
 
 import clienteAxios from '../config/axios';
+
 
 //Crear nuevos productos
 export function crearProductoAction(producto){
@@ -105,5 +110,46 @@ const productoEliminado=()=>({
 
 const productoNoEliminado=error=>({
     type: PRODUCTO_NOELIMINADO,
+    payload:error
+});
+
+//Seleccionar un producto para editar
+export function obtenerProductoEditar(producto){
+    return async (dispatch)=>{
+        dispatch(productoEditarAction(producto))
+    }
+}
+
+const productoEditarAction=producto=>({
+    type: OBTENER_PRODUCTO_EDITAR,
+    payload: producto
+})
+
+
+//Guardar el producto editado
+export function editarProductoAction(producto){
+    return async (dispatch)=>{
+        dispatch(iniciarEditarProducto(producto));
+        try {
+            const editado=await clienteAxios.put(`/productos/${producto.id}`,producto);
+            dispatch(editarProductoExito(editado))
+            
+        } catch (error) {
+            dispatch(editarProductoError(true))
+        }
+    }
+}
+
+const iniciarEditarProducto=producto=>({
+    type: INICIAR_EDICION_PRODUCTO,
+    payload:producto
+})
+
+const editarProductoExito=editado=>({
+    type: PRODUCTO_EDITADO
+})
+
+const editarProductoError=error=>({
+    type: PRODUCTO_NOEDITADO,
     payload:error
 })

@@ -6,7 +6,11 @@ import { AGREGAR_PRODUCTO,
     CONSULTAR_PRODUCTOS_ERROR,
     PRODUCTO_ELIMINADO,
     PRODUCTO_NOELIMINADO,
-    OBTENER_PRODUCTO_ELIMINAR
+    OBTENER_PRODUCTO_ELIMINAR,
+    OBTENER_PRODUCTO_EDITAR,
+    INICIAR_EDICION_PRODUCTO,
+    PRODUCTO_EDITADO,
+    PRODUCTO_NOEDITADO
 } from '../types';
 
 //cada reducers tiene su propio state
@@ -15,7 +19,8 @@ const initialState={
     error:null,
     loading:false,
     insertado:false,
-    eliminado:null
+    eliminar:null,
+    productoEditar:null
 }
 
 //el reducer será una función que recibira un state y un action
@@ -50,18 +55,38 @@ export default function(state=initialState,action){
         case OBTENER_PRODUCTO_ELIMINAR:
             return{
                 ...state,
-                eliminado:action.payload
+                eliminar:action.payload
             }
         case PRODUCTO_ELIMINADO:
             return{
                 ...state,
-                productos: state.productos.filter(producto=> producto.id !== state.eliminado),
-                eliminado:null
+                productos: state.productos.filter(producto=> producto.id !== state.eliminar),
+                eliminar:null
             }
         case PRODUCTO_NOELIMINADO:
             return{
                 ...state,
                 error:true
+            }
+        case OBTENER_PRODUCTO_EDITAR:
+            return{
+                ...state,
+                productos:state.productos,
+                productoEditar:action.payload
+            }
+        case INICIAR_EDICION_PRODUCTO:
+            return{
+                ...state,
+            }
+        case PRODUCTO_NOEDITADO:
+            return{
+                ...state,
+                error:action.payload
+            }
+        case PRODUCTO_EDITADO:
+            return{
+                ...state,
+                error:null
             }
         default:
             return state

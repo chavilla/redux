@@ -25,6 +25,7 @@ const NuevoProducto = () => {
         e.preventDefault();
         //Validar
         if(nombre.trim()==='' || precio<=0){
+            alert('Todos los campos son obligatorios');
             return;
         }
         //Si no hay errores
