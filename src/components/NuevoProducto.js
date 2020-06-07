@@ -12,10 +12,6 @@ const NuevoProducto = () => {
 
     //Llamar al dispatch para comunicarnos con el action
     const dispatch=useDispatch();
-
-    //Acceder al state mediante useSelector
-    const cargando=useSelector(state=>state.productos.loading);
-    const error= useSelector(state=>state.productos.error);
     
     //Comunicar el dispatch con el state local
     const addProducto=producto=> dispatch(crearProductoAction(producto));
@@ -40,6 +36,9 @@ const NuevoProducto = () => {
         setPrecio('');
     }
     
+     //Acceder al state mediante useSelector
+     const cargando=useSelector(state=>state.productos.loading);
+     const error= useSelector(state=>state.productos.error);
 
     return ( 
         <div className="row justify-content-center">
